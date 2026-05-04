@@ -1,0 +1,25 @@
+# SumoController 客户端配置文件
+server_url: "http://localhost:8000"
+
+plugins:
+  - name: "AntiEdgeSurf"
+    version: "1.0.0"
+    file: "AntiEdgeSurf.cipx"
+    enabled: true
+
+  - name: "BoxLogger"
+    version: "1.0.0"
+    file: "BoxLogger.cipx"
+    enabled: true
+    config:
+      upload_interval_seconds: 5
+
+  - name: "AntiBluetooth"
+    version: "1.0.0"
+    file: "AntiBluetooth.cipx"
+    enabled: true
+
+  - name: "AntiLine"
+    version: "1.0.0"
+    file: "AntiLine.cipx"
+    enabled: true

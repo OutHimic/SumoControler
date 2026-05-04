@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Plugins/" />
+  <Folder Name="/Plugins/AntiBluetooth/">
+    <Project Path="Plugins/AntiBluetooth/AntiBluetooth/AntiBluetooth.csproj" />
+  </Folder>
+  <Folder Name="/Plugins/AntiEdgeSurf/">
+    <Project Path="Plugins/AntiEdgeSurf/AntiEdgeSurf/AntiEdgeSurf.csproj" />
+  </Folder>
+  <Folder Name="/Plugins/AntiLine/">
+    <Project Path="Plugins/AntiLine/AntiLine/AntiLine.csproj" />
+  </Folder>
+  <Folder Name="/Plugins/BoxLogger/">
+    <Project Path="Plugins/BoxLogger/BoxLogger/BoxLogger.csproj" />
+  </Folder>
+  <Project Path="Sumo.Core/Sumo.Core.csproj" />
+  <Project Path="SumoController/SumoController.csproj" />
+</Solution>

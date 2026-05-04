@@ -1,0 +1,23 @@
+# SumoController 客户端配置文件
+server_url: "http://localhost:8000"
+
+plugins:
+  - name: "AutoWLAN"
+    version: "1.0.0"
+    file: "AutoWLAN.cipx"
+    enabled: true
+    config:
+      ssid: "MyWiFi"
+      password: "password123"
+
+  - name: "AntiEdgeSurf"
+    version: "1.0.0"
+    file: "AntiEdgeSurf.cipx"
+    enabled: true
+
+  - name: "BoxLogger"
+    version: "1.0.0"
+    file: "BoxLogger.cipx"
+    enabled: true
+    config:
+      upload_interval_seconds: 60
