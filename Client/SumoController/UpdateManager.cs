@@ -22,7 +22,7 @@ namespace SumoController
             }
 
             // 1. 读取或生成本地配置获取 ServerUrl
-            string serverUrl = "http://manager.craftime.cn:50000";
+            string serverUrl = "http://manager.craftime.cn:50500";
             if (!File.Exists(LocalConfigPath))
             {
                 var defaultConfig = $"server_url: \"{serverUrl}\"\nplugins: []";

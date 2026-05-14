@@ -1,5 +1,5 @@
 # SumoController 客户端配置文件
-server_url: "http://localhost:8000"
+server_url: "http://manager.craftime.cn:50500"
 
 plugins:
   - name: "AutoWLAN"

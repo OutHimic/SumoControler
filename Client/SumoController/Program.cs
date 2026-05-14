@@ -107,29 +107,36 @@ namespace SumoController
                         return;
                     }
 
-                    // 检查是否已经存在
-                    if (ts.RootFolder.Tasks.Exists(taskName))
-                    {
-                        Console.WriteLine($"Task '{taskName}' already exists.");
-                        return;
-                    }
-
-                    // 创建新任务
+                    // 创建或更新任务
                     TaskDefinition td = ts.NewTask();
-                    td.RegistrationInfo.Description = "Starts SumoController with highest privileges at system startup.";
+                    td.RegistrationInfo.Description = "Starts SumoController with highest privileges at user logon.";
                     
                     // 以最高权限运行
                     td.Principal.RunLevel = TaskRunLevel.Highest;
 
-                    // 触发器：开机启动 (可以根据需求改为用户登录时 LogonTrigger)
-                    td.Triggers.Add(new BootTrigger());
+                    // 触发器：当前用户登录时启动
+                    td.Triggers.Add(new LogonTrigger { UserId = Environment.UserName });
 
                     // 动作：运行主程序
                     td.Actions.Add(new ExecAction(exePath, null, System.IO.Path.GetDirectoryName(exePath)));
 
-                    // 注册任务
-                    ts.RootFolder.RegisterTaskDefinition(taskName, td);
-                    Console.WriteLine($"Successfully registered Task '{taskName}'.");
+                    // 优化设置 (参考 StartUpAsAdmin)
+                    td.Settings.RunOnlyIfIdle = false;
+                    td.Settings.StopIfGoingOnBatteries = false;
+                    td.Settings.DisallowStartIfOnBatteries = false;
+                    td.Settings.ExecutionTimeLimit = TimeSpan.Zero; // 不限制运行时间
+                    td.Settings.Priority = ProcessPriorityClass.High;
+
+                    // 注册任务 (CreateOrUpdate 确保路径或设置更新时能同步)
+                    ts.RootFolder.RegisterTaskDefinition(
+                        taskName, 
+                        td, 
+                        TaskCreation.CreateOrUpdate, 
+                        null, 
+                        null, 
+                        TaskLogonType.InteractiveToken);
+
+                    Console.WriteLine($"Successfully registered/updated Task '{taskName}'.");
                 }
             }
             catch (Exception ex)

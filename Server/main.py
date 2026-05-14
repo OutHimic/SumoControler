@@ -38,6 +38,6 @@ def health_check():
     return jsonify({"status": "ok", "message": "SumoController Server is running."})
 
 if __name__ == "__main__":
-    print("Starting SumoController Server on http://0.0.0.0:8000")
+    print("Starting SumoController Server on http://0.0.0.0:50500")
     # 生产环境中建议使用 gunicorn 或 waitress
-    app.run(host="0.0.0.0", port=50000)
+    app.run(host="0.0.0.0", port=50500)
